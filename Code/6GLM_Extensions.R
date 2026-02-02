@@ -1,6 +1,7 @@
 
 #############
-# GENERALISED LINEAR MODEL (quadratics and interactions)
+# GENERALISED LINEAR MODEL (extensions)
+# data transformations, quadratics and interactions
 #############
 
 
@@ -34,6 +35,7 @@ plot(gala$Area, gala$Species)
 #obviously non-linear! This cannot be modelled easily, due to the high outliers
 
 #from previous experience, I know that the logArea is more likely to linearly correlate with diversity
+#I will attempt a transformation to see if it makes the data more linear
 #what does that look like?
 gala$logarea<-log10(gala$Area)
 plot(gala$logarea, gala$Species)
@@ -42,6 +44,11 @@ plot(gala$logarea, gala$Species)
 #check distribution of response data
 hist(gala$Species, breaks=20)
 #not normally distributed. this looks like a curve
+
+#what do we do with this? Well we have a lot of choices
+#based on our quick transformation above, I think transformation is the wrong choice
+
+#but let's look at a quick example where a data transformation can help!
 
 #############
 ### Data transformations
@@ -90,12 +97,19 @@ abline(model_raw, col = "red", lwd = 2)
 
 plot(df1$days, df1$log_population, pch = 19, main = "Log-Transformed Response")
 abline(model_log, col = "blue", lwd = 2)
-
+par(mfrow = c(1, 1))
 
 
 #############
 ### Quadratics
 #############
+
+#let's go back to our gala data
+plot(gala$Area, gala$Species)
+#we know this is not going to work in a linear model
+#and our logged approach didn't work much better
+plot(gala$logarea, gala$Species)
+#so what can we do now?
 
 #in this case we have multiple options
 #but one option is to use a quadratic, and other polynomials
@@ -116,7 +130,7 @@ plot(x,y)
 #if we want to model this, one way is to explictly include a squared term in the model
 gala$logarea.squared <- gala$logarea^2
 lm.poly <- lm(Species ~ logarea + logarea.squared, data = gala)
-plot(lm.poly)
+plot(lm.poly) #acceptable
 summary(lm.poly)
 
 #we now have a parameter for both logarea and logarea squared
@@ -134,8 +148,11 @@ summary(lm.poly1.raw)
 #we can compare to a strictly linear model and see if it is the same or worse than our quadratic
 lm.raw <- lm(Species ~ logarea, data = gala)
 AIC(lm.raw, lm.poly1.raw)
+#we cover model comparisons later, but in short AIC judges model performance. The lower the better
+#an alternative way to compare models is an ANOVA! Do they perform significantly differently?
 anova(lm.raw, lm.poly1.raw)
 #polynomial model is definitely better
+
 
 #let's make a plot to see the relationship
 ggplot(gala, aes(x=logarea, y=Species)) + geom_point(size=3)+
@@ -242,7 +259,7 @@ ggplot(fortify(lmfit.inter), aes(NAP, Richness, col = week))+
 summary(lmfit.inter)
 
 #NAP:week4 has a significant interaction
-#we should interpret this with causiton as there 5 data points in week 5
+#we should interpret this with caution as there 5 data points in week 5
 table(RIKZdat$week)
 
 #but let's see if can make sense of this output
@@ -309,6 +326,8 @@ AIC(nbfit.inter, lmfit.inter)
 #despite the p values and model fit, I would conclude it is more likely we have just seen random variation
 #across weeks, it's probably not systemic
 
+#this is a good example of where adding a load of complexity gives a "statistically" good model
+#but doesn't make a lot of ecological sense. And always favour your common sense!
 
 
 

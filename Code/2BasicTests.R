@@ -75,8 +75,6 @@ modelT
 #on the left the mean limpet is 44.45mm in diameter, on the right the mean limpet diameter is 27.98
 #so limpets on the left are bigger!
 
-#what is our conclusion?
-
 
 
 

@@ -82,6 +82,9 @@ simulateResiduals(glmPdace, plot = TRUE)
 #horrible fit
 
 #check for overdispersion
+#overdispersion is a check we need to perform for some distributions
+#in brief, it checks whether the data variance conforms to the expected distribution
+#or in other words, if it's overdispersed our data doesn't fit the distribution and we need to choose another!
 check_overdispersion(glmPdace)
 #also bad!
 
@@ -89,7 +92,7 @@ check_overdispersion(glmPdace)
 summary(glmPdace)
 1590.0/ 6
 #awful!
-#what are our other options?
+#what are our other options? What other distributions can we try?
 
 ### QUASIPOISSON
 #Poisson distribution did not work well (as is often the case)

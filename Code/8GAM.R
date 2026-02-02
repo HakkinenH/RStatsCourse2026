@@ -143,6 +143,8 @@ ggplot(newdat, aes(logarea, dy)) + geom_line() +
 
 pisa<-read.csv("data/pisasci2006.csv")
 head(pisa)
+#there are some NA values here, I will remove
+pisa<-pisa[complete.cases(pisa),]
 
 #start with a basic linear model (using gam()). For comparison purposes
 mod_lm = gam(Overall ~ Income, data = pisa)
@@ -168,7 +170,7 @@ summary(mod_gam1)
 #what do we take from this?
 #income has a significant effect on overall education grade
 #we don't trust p-values much in a GAM, but this is so low we can be confident something is happening here
-#the income parameter used 6.895 effective degrees of freedom (compared to 7.741 for the reference)
+#the income parameter used 6.935 effective degrees of freedom (compared to 7.787 for the reference)
 #these two combined determine the p value
 
 #r-squared is provided, a high r-squared means a large amount of the data is explained by the model
@@ -180,7 +182,8 @@ summary(mod_gam1)
 plot(mod_gam1)
 #quite wiggly! Importantly, does this pattern make sense? Can we explain it?
 #is it over-fitted?
-
+#this shows a major weakness of GAMs, interpreting them can be tricky
+#Would we say average science score goes up with income? Or does it go up then down?
 
 #how much better was the GAM over the linear model?
 summary(mod_lm)$sp.criterion
@@ -210,6 +213,8 @@ plot(ggeffects::ggpredict(mod_gam2), facets = TRUE)
 gratia::draw(mod_gam2)
 #note that the health plot is basically staight!
 
+
+
 #let's make a full plot as an example
 
 newdat <- data.frame(Income = seq(0.4, 1, length = 500), 
@@ -231,6 +236,9 @@ ggplot(newdat, aes(Income, dy)) + geom_line() +
 #income generally increase science score, but unevenly
 #extrapolating past the main parts of the data causes strange results! So we shouldn't do it!
 
+#the line fits the data well but interpetation is difficult!
+
+
 #one of the reasons GAMs are difficult to visualise is because they correlate in non-linear ways
 #it can be helpful to plot in multiple dimensons
 vis.gam(
@@ -242,6 +250,9 @@ vis.gam(
   n.grid    = 500,
   border    = NA
 )
+#again, this is cool (and sometimes useful) but difficult to interpret
+#if you can't interpret the GAM it could be overfitted!
+#in which case use something safer, a statistical test is useless if you don't understand what it says
 
 
 ##############################################################

@@ -105,6 +105,8 @@ kr1<-kruskal.test(weight ~ feed, data=chickwts)
 #let's compare
 summary(an1)
 kr1
+#there is a significant difference overall between categories of feed
+#note this doesn't tell us WHICH types of feed, only that there are difference overall
 
 #linear regression is a lot more detailed, but they agree that the model shows an overall significant effect of feed!
 
@@ -115,6 +117,24 @@ pairwise.wilcox.test(chickwts$weight, chickwts$feed,
 #you will probably see a warning about p-values, this is normal as it's based on data ranks
 #as normal we should interpret these values with care, and use our brains and plots to aid interpretation
 
+#so what can we conclude from this?
+#There was a significance difference in chick weight between different types of feed
+#Casein-fed chicks weighed significantly more than horsebean, linseed, and soybean
+#horsebean-fed chicks weighed significantly less than linseed, meatmeal,  soybean and sunflower
+#linseeed-fed chicks weighed significantly less than meatmeal chicks
+#soy bean fed chicks weighed significantly less than sunflower chicks
+#there was no significant difference in weight between casein, meatmeal, and sunflower chicks, they were the heaviest
+
+#I used a combination of the pairwise tests and the box plot to make these conclusions
+boxplot(
+  weight~feed,
+  data=chickwts,
+  col= "lightgray",
+  main= "",
+  xlab= "Feed type", 
+  ylab= "Weight (g)", 
+  ylim= c(100,450), 
+  las= 1)
 
 
 ##############################################################
@@ -126,7 +146,8 @@ grouse<-read.csv("data/grouse.csv")
 
 
 ##TASK: build a linear model exploring if year 2 correlates with the population in year 1. Does it work? Why? Why not?
-#compare results with a non-parametric equivalent (spoiler: try a Spearman's correlation using the cor.test() function)
+#compare results with a non-parametric equivalent 
+#(spoiler: try a Spearman's correlation using the cor.test() function), this is a non-parametric equivalent of a linear regression
 
 
 #Remember the steps to follow

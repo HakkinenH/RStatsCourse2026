@@ -54,7 +54,7 @@ colnames(df1)<-c("numFrogs","Pond")
 print(df1)
 
 #you can navigate a dataframe with subsetting. Some examples:
-#select a columns with $
+#select a column with $
 df1$numFrogs
 #select a column with []. Square brackets always mean subset!
 df1[, 1]

@@ -84,7 +84,6 @@ plot(binplot)
 
 
 #SIDE NOTE: OVER DISPERSION
-#this is an additional check to make sure a binomial distribution is the right choice
 #this is an additional check we need to carry out for Binomial GLMs that we don't for linear GLMs: overdispersion
 #binomial distributions do not have a parameter for data variance (unlike Gaussian distributions)
 #this means they assume that the data mean is proportional to variance. If it isn't, the data is overdispersed!
