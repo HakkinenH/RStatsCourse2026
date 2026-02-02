@@ -1,0 +1,7 @@
+habitat,presence,count
+protected,Present,12
+protected,Absent,18
+unprotected,Present,25
+unprotected,Absent,15
+industrial,Present,8
+industrial,Absent,22
