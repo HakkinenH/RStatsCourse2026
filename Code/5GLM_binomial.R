@@ -64,7 +64,10 @@ logit.reg <- glm(pa ~ WatrCont + Topo,
                  family = binomial(link = "logit"))
 
 #check residuals
+par(mfrow=c(2,2)) #resize window so we can fit multiple plots in one window
 plot(logit.reg)
+par(mfrow=c(1,1))
+
 
 #residuals can be difficult to interpret in binomial model, other packages can help
 residualPlot(logit.reg)

@@ -4,10 +4,8 @@
 #############
 
 
-
 #Clear your previous work
 rm(list=ls())
-
 
 
 #set your working directory
@@ -47,7 +45,7 @@ data.spatialCor$Resid <- rstandard(data.spatialCor.lm)
 coordinates(data.spatialCor) <- ~LAT + LONG  #effectively convert the data into a spatial data frame
 bubble(data.spatialCor, "Resid")
 
-#we have plotted our data poins, but the values are now our model residuals
+#we have plotted our data poinst, but the values are now our model residuals
 #we want this to look as random as possible
 #But in this case there is really obvious clustering, similar residuals are clustered spatially
 #this is big issue in spatial analysis as we typically assume locations are independent

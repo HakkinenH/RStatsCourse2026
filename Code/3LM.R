@@ -28,6 +28,9 @@ setwd(curpath)
 #go up a level out of the code folder for neatness
 setwd("../")
 
+#load packages
+source("./code/0Packages.R")
+
 #read in your datafile
 limpets<- read.table("Data/Limpets_2018.txt", header=T)
 #check it loaded properly
