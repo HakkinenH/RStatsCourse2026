@@ -346,7 +346,10 @@ hist(limpets$nndia_z)
 model5<-lm(dia ~ nndia_z + salinity_z, data=limpets)
 summary(model5)
 
-#salinity is clearly more important! for every one SD that salinity increases, dia increases by 9.9176
+#because the units are not comparable we can compare relative effect sizes
+#as shorthand we can say which of the significant variables has more larger effect on our response 
+#looking at the results salinity is clearly more important! 
+#for every one SD that salinity increases, dia increases by 9.9176
 
 
 

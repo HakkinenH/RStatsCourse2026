@@ -66,7 +66,7 @@ boxplot(limpets$dia ~ limpets$rl)
 #I think they are met so I will run a t-test
 #our formula is already written as y~x (y as predicted by x)
 #so we are interested in diameter as predicted by rl (left or right)
-#note we don't use the $ here! You can if you want to (see line 44 and 45, it does the same thing)
+#note we don't have to use the $ here! You can if you want to (see line 44 and 45, it does the same thing)
 #instead we specify the dataframe in the data= argument
 modelT<-t.test(dia ~ rl, data=limpets)
 modelT<-t.test(limpets$dia ~ limpets$rl)

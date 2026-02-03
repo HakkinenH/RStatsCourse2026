@@ -77,6 +77,9 @@ plot(model_raw)
 #we are going to do the last one. This is quick and easy
 #common transformations include log(), log10(), sqrt()
 df1$log_population <- log10(df1$population)
+par(mfrow=c(1,2))
+hist(df1$population, main="Population Size", xlab="n")
+hist(df1$log_population, main="log10(Population Size)", xlab="n")
 
 #let's build a model with logged data
 model_log <- lm(log_population ~ days, data = df1)
