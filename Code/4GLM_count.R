@@ -9,6 +9,9 @@
 rm(list=ls())
 
 
+
+
+if(!require("rstudioapi")) install.packages("rstudioapi")
 #set your working directory
 #I'm lazy so I autodetect where this file is and set it one level higher
 #if this fails for any reason, set setwd manually to the folder path
@@ -20,6 +23,8 @@ setwd("../")
 
 #load packages
 source("./code/0Packages.R")
+
+
 
 
 #############

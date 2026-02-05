@@ -13,6 +13,7 @@
 rm(list=ls())
 
 
+if(!require("rstudioapi")) install.packages("rstudioapi")
 #set your working directory
 #I'm lazy so I autodetect where this file is and set it one level higher
 #if this fails for any reason, set setwd manually to the folder path
@@ -46,6 +47,58 @@ source("./code/0Packages.R")
 
 
 #############
+### BASIC MODEL COMPARISION WITH AIC
+#############
+
+#read data in
+mammalsc<-read.csv("Data/mammalsc.csv")
+head(mammalsc)
+#this is a dataset that looks at how much mammals sleep on average per day
+#as well as a number of life history traits
+#we want to know which traits predict high sleeping totals
+#this is a lot of variables! Where do we start?
+
+#what distribution is our response?
+hist(mammalsc$total_sleep)
+#not very normal, we will have to check residuals carefully.
+
+#one possibility is we make two models with sets of possible variables
+#and compare their performance
+m1<-lm(total_sleep ~ life_span + gestation + log(brain_wt), data=mammalsc)
+m2<-lm(total_sleep ~ life_span + gestation, data=mammalsc)
+#we can then compare them by using AIC!
+#AIC looks at goodness-of-fit of each model, as compared to its complexity
+#it will always favour simpler models unless the additional parameters improve the model substantially
+AIC(m1, m2)
+#We always want the lower number. In this case m2 is better, but not by much
+#236-233=3
+#we often talk about delta AIC ()
+#which desribes the difference in AIC between two models
+# delta AIC  <2 = small improvement, but insubstantial. Models are effectively the same
+# delta AIC 2-5 = a minor improvement, possibly use the model with the lower score
+# delta AIC >5 = a substantial improvement, definitely use the model with a lower score
+
+#Note there are several other model comparison metrics, including 
+#AIC/AICc/BIC, ANOVA
+#This all have some differences but have similar principles
+#For example:
+anova(m1, m2)
+#There is a significant difference in the performance of these models according to the ANOVA!
+#In other words, the more complex model is better, as it has more information
+
+
+#an obvious weakness with this approach is we only compare 2 models at a time
+#this is great if we only have 2 candidate models, but what if we have a complex dataset
+#and there are LOTS of possible models?
+
+#the easiest option (if you have a large dataset) is simply to put everything into a single model
+#and remove any parameters y
+#ou think are unimportant (e.g. you cannot think of why x would affect y)
+#However, this is not always possible!
+#the rest of the file looks at ways you can approach this problem
+#
+
+#############
 ### BACKWARD ELIMINATION
 #############
 
@@ -58,9 +111,6 @@ source("./code/0Packages.R")
 #BUT it is prone to errors, as we are essentially trawling for patterns
 #a good rule of thumb: if you have no idea what a correlation would mean if you find one, DON'T PUT that variable in the model
 
-#read data in
-mammalsc<-read.csv("Data/mammalsc.csv")
-head(mammalsc)
 
 #a very popular way a few years ago was to start with a complex model and work back
 #we use AIC comparison to remove anything that doesn't aid the model

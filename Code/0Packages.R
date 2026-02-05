@@ -6,6 +6,8 @@
 # INSTALLS AND DEPENDENCIES
 #############
 
+
+
 #run this file to install all the packages you need
 if(!require("chisq.posthoc.test")) install.packages("chisq.posthoc.test")
 if(!require("ggplot2")) install.packages("ggplot2")
@@ -81,4 +83,46 @@ library(gratia)
 library(ggthemes)
 library(interactions)
 library(sp)
+
+
+#file cleanup:
+#there are a lot of packages here, check if we can remove any of them
+#run check on which packages are actually used in coding repo
+#commented out for neatness
+# packageload <- c("chisq.posthoc.test", "ggplot2", "ggResidpanel",
+#                  "patchwork", "sjPlot", "performance",
+#                  "see", "boot", "car",
+#                  "DHARMa", "lme4", "ggeffects",
+#                  "gratia", "ggthemes", "abe",
+#                  "MuMIn", "glmnet", "glmm",
+#                  "MASS", "nlme", "interactions",
+#                  "mgcv", "sp")
+
+# Find which packages do used functions belong to ----
+# library(NCmisc)
+# used.functions1 <- NCmisc::list.functions.in.file(filename = "./code/1RTutorial.R", alphabetic = FALSE) |> print()
+# used.functions2 <- NCmisc::list.functions.in.file(filename = "./code/2BasicTests.R", alphabetic = FALSE) |> print()
+# used.functions3 <- NCmisc::list.functions.in.file(filename = "./code/3LM.R", alphabetic = FALSE) |> print()
+# used.functions4 <- NCmisc::list.functions.in.file(filename = "./code/4GLM_count.R", alphabetic = FALSE) |> print()
+# used.functions5 <- NCmisc::list.functions.in.file(filename = "./code/5GLM_binomial.R", alphabetic = FALSE) |> print()
+# used.functions6 <- NCmisc::list.functions.in.file(filename = "./code/6GLM_Extensions.R", alphabetic = FALSE) |> print()
+# used.functions7 <- NCmisc::list.functions.in.file(filename = "./code/7Nonparametric.R", alphabetic = FALSE) |> print()
+# used.functions8 <- NCmisc::list.functions.in.file(filename = "./code/8GAM.R", alphabetic = FALSE) |> print()
+# used.functions9 <- NCmisc::list.functions.in.file(filename = "./code/9GLMM.R", alphabetic = FALSE) |> print()
+# used.functions10 <- NCmisc::list.functions.in.file(filename = "./code/10GLM_spatialautocorrelation.R", alphabetic = FALSE) |> print()
+# used.functions11 <- NCmisc::list.functions.in.file(filename = "./code/11ModelComparisons.R", alphabetic = FALSE) |> print()
+# 
+# 
+# pack1<-c(used.functions1, used.functions2, used.functions3,
+#          used.functions4, used.functions5, used.functions6,
+#          used.functions7, used.functions8, used.functions9, 
+#          used.functions10, used.functions11)
+# usedPack<-names(pack1)
+# used.functions<-unique(usedPack)
+# 
+# # Find which loaded packages are not used ----
+# used.packages <- used.functions  |> grep(pattern = "package:", value = TRUE) |> gsub(pattern = "package:", replacement = "") |> print()
+# 
+# unused.packages <- packageload[!(packageload %in% used.packages)] |> print()
+
 
