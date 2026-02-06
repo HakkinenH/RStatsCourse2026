@@ -1,11 +1,11 @@
 
 
-
+#this file installs and checks all packages needed for this repo
+#run this file first if this is your first time using any of these files!
 
 #############
 # INSTALLS AND DEPENDENCIES
 #############
-
 
 
 #run this file to install all the packages you need
@@ -41,22 +41,7 @@ if(!require("sp")) install.packages("sp")
 #load (or install) packages required
 if(!require("mcmcplots")) install.packages("mcmcplots")
 if(!require("MCMCvis")) install.packages("MCMCvis")
-if(!require("ggplot2")) install.packages("ggplot2")
-if(!require("ggthemes")) install.packages("ggthemes")
-#these two seem to struggle on the ZSL network. If they fail, see notes below
-# if(!require("rjags")) install.packages("rjags")
-# if(!require("R2jags")) install.packages("R2jags")
-# 
-# #check these load
-# library("rjags")
-# library("R2jags")
-#if these two lines return an error, you may need to install JAGs manually (depending on your version of R)
-#this will require admin rights! Install from here:
-#https://sourceforge.net/projects/mcmc-jags/files/JAGS/4.x/Windows/
-#download, install, and use default settings. Relaunch R and try again
-#If you run a non-Windows OS see:
-#https://sourceforge.net/projects/mcmc-jags/files/JAGS/4.x/Mac%2520OS%2520X/
-#for linux see: https://mcmc-jags.sourceforge.io/
+
 
 
 #now check they all load

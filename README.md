@@ -26,5 +26,6 @@ All exercises are in R and RStudio
    -To install R: https://cran.r-project.org/
    -To install RStudio: https://posit.co/download/rstudio-desktop/
    
-Run 0Packages.R first, it installs all dependencies needed for this course
+ NOTE:
+Always run 0Packages.R first, it installs all dependencies needed for this course
 After that, files can be approached in any order
