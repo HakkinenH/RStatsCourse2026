@@ -1,8 +1,7 @@
 # Statistics in R Course 2026
 Introduction to Statistics at ZSL
 
-As part of IoZ’s core training programme, 
-Course materials for IoZ training on the 4th and 5th of February! 
+As part of IoZ’s core training programme, course materials for IoZ training on the 4th and 5th of February! 
 
 Course is split into two parts, the first  is for complete beginners (or those who want to fill in any gaps in basic theory and understanding) and the second will build up to more intermediate-level analyses.
 
