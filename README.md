@@ -1,4 +1,4 @@
-# RCourse2026
+# Statistics in R Course 2026
 Introduction to Statistics at ZSL
 
 As part of IoZ’s core training programme, 
